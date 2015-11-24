@@ -42,7 +42,7 @@ function selectLoc(id) {
   showDocsForElement($('#' + id));
   window.location.href = '#loc=' + id + ';';
 
-  _gaq.push(['_trackEvent', 'git-cheatsheet', 'select-loc', id, null]);
+  ga('send','event', 'git-cheatsheet', 'select-loc', id, null);
 }
 
 $(function () {
@@ -101,7 +101,7 @@ $(function () {
   $('[data-docs]').live('mouseover', function () {
     if ($(this).parents('#commands').length) return; // handled separately
     showDocsForElement($(this));
-    _gaq.push(['_trackEvent', 'git-cheatsheet', 'mouseover', $(this).text(), null]);
+    ga('send','event', 'git-cheatsheet', 'mouseover', $(this).text(), null);
   });
 
   $.fn.hoverClass = function (klass) {
@@ -120,7 +120,7 @@ $(function () {
         cmd = 'git ' + $cmd.html();
     showDocs(doc, cmd);
 
-    _gaq.push(['_trackEvent', 'git-cheatsheet', 'select', 'git ' + $cmd.text(), null]);
+    ga('send','event', 'git-cheatsheet', 'select', 'git ' + $cmd.text(), null);
   }
 
   $('#commands>div').mouseover(function () {

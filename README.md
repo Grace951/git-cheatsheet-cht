@@ -4,7 +4,7 @@ Git Cheatsheet 正體中文版
 
 互動式 Git 常用命令參考
 
-https://scars377.github.com/git-cheatsheet-cht
+http://scars377.github.com/git-cheatsheet-cht
 
 歡迎 Pull Requests
 

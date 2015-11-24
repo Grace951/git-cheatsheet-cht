@@ -28,7 +28,7 @@ var commands = [
 		direction: "up",
 		cmd: "add <file... or dir...>",
 		tags: 'Basic Snapshotting',
-		docs: "將工作目錄中的新文件或修改的文件添加到 index，以供稍后提交至版本庫。使用「add --interactive」可以交互式地添加文件。"
+		docs: "將工作目錄中的新文件或修改的文件添加到 index，以供稍後提交至版本庫。使用「add --interactive」可以互動式地添加文件。"
 	}, {
 		left: "workspace",
 		right: "index",
@@ -95,7 +95,7 @@ var commands = [
 		cmd: "reset --hard",
 		tags: 'Basic Snapshotting',
 		docs: "清空工作目錄中的所有修改和 index 快照，與本地版本庫同步。" +
-			"警告：工作目錄中所有未提交的修改都將丟失。通常用於合並沖突而打算重新開始的情況。添加「ORIG_HEAD」參數可以撤銷最近一次合並操作及之后的所有改動。"
+			"警告：工作目錄中所有未提交的修改都將丟失。通常用於合併衝突而打算重新開始的情況。添加「ORIG_HEAD」參數可以撤銷最近一次合併操作及之後的所有改動。"
 	},
 
 	{
@@ -120,7 +120,7 @@ var commands = [
 		direction: "dn",
 		cmd: "merge <commit or branch>",
 		tags: 'Branching and Merging',
-		docs: "將 <branch name> 中的內容合並到當前分支。使用 --no-commit 參數可以防止合並之后自動提交，以便審查合並結果之后再進行提交。"
+		docs: "將 <branch name> 中的內容合併到當前分支。使用 --no-commit 參數可以防止合併之後自動提交，以便審查合併結果之後再進行提交。"
 	},
 
 	{
@@ -129,7 +129,7 @@ var commands = [
 		direction: "dn",
 		cmd: "rebase <upstream>",
 		tags: 'Patching',
-		docs: "撤銷自從 <upstream> 分支以來的所有修改提交（commit），然后將這些提交逐個應用於 <upstream> 的 HEAD 上。"
+		docs: "撤銷自從 <upstream> 分支以來的所有修改提交（commit），然後將這些提交逐一套用於 <upstream> 的 HEAD 上。"
 	},
 
 	{
@@ -138,13 +138,13 @@ var commands = [
 		direction: "dn",
 		cmd: "cherry-pick <sha>",
 		tags: 'Patching',
-		docs: "將指定 commit 中的修改合並到當前分支。"
+		docs: "將指定 commit 中的修改合併到當前分支。"
 	}, {
 		left: "workspace",
 		right: "local_repo",
 		direction: "dn",
 		cmd: "revert <sha>",
-		docs: "撤銷 <sha> 中的修改內容並將結果提交。此項操作需要工作目錄中干淨無修改。"
+		docs: "撤銷 <sha> 中的修改內容並將結果提交。此項操作需要工作目錄中乾淨無修改。"
 	},
 
 	{
@@ -167,7 +167,7 @@ var commands = [
 		direction: "up",
 		cmd: "commit --amend",
 		tags: 'Basic Snapshotting',
-		docs: '將當前 index 中的修改內容合並到上一次提交中。'
+		docs: '將當前 index 中的修改內容合併到上一次提交中。'
 	},
 
 	{
@@ -177,12 +177,12 @@ var commands = [
 		cmd: "log",
 		tags: 'Branching and Merging, Inspection and Comparison',
 		docs: '查看提交歷史記錄，最新的排在最頂端。選項：' +
-			'--decorate    將分支以及標簽信息顯示在相應的提交旁邊' +
-			'--stat        包含文件的增刪改信息' +
-			'--author=foo  隻顯示指定作者的提交' +
-			'--after="MMM DD YYYY" 如 "Jun 20 2008"，隻顯示某個日期之后的提交' +
-			'--before="MMM DD YYYY" 隻顯示某個日期之前的提交' +
-			'--merge       隻顯示跟當前合並沖突有關的提交'
+			'--decorate    將分支以及標簽訊息顯示在相應的提交旁邊' +
+			'--stat        包含文件的增刪改訊息' +
+			'--author=foo  只顯示指定作者的提交' +
+			'--after="MMM DD YYYY" 如 "Jun 20 2008"，只顯示某個日期之後的提交' +
+			'--before="MMM DD YYYY" 只顯示某個日期之前的提交' +
+			'--merge       只顯示跟當前合併衝突有關的提交'
 	}, {
 		left: "local_repo",
 		right: "local_repo",
@@ -219,49 +219,49 @@ var commands = [
 		direction: "dn",
 		cmd: "clone <repo>",
 		tags: 'Creating Projects',
-		docs: "下載 <repo> 指定的倉庫，並將工作目錄簽出為 master 分支的最新版本。"
+		docs: "下載 <repo> 指定的檔案庫，並將工作目錄簽出為 master 分支的最新版本。"
 	}, {
 		left: "workspace",
 		right: "remote_repo",
 		direction: "dn",
 		cmd: "pull <remote> <refspec>",
 		tags: 'Sharing and Updating',
-		docs: "獲取遠端倉庫中的指定版本，並將其合並到當前分支。"
+		docs: "獲取遠端檔案庫中的指定版本，並將其合併到當前分支。"
 	}, {
 		left: "workspace",
 		right: "remote_repo",
 		direction: "dn",
 		cmd: "reset --hard <remote>/<branch>",
 		tags: 'Basic Snapshotting',
-		docs: "將本地工作目錄重置為遠端分支版本。使用 'reset --hard origin/master' 會拋棄所有本地 master 分支上的提交，可以用於合並失敗時重新開始。"
+		docs: "將本地工作目錄重置為遠端分支版本。使用 'reset --hard origin/master' 會拋棄所有本地 master 分支上的提交，可以用於合併失敗時重新開始。"
 	}, {
 		left: "local_repo",
 		right: "remote_repo",
 		direction: "dn",
 		cmd: "fetch <remote> <refspec>",
 		tags: 'Sharing and Updating',
-		docs: "從遠端倉庫下載所有內容（包括分支和標簽）。"
+		docs: "從遠端檔案庫下載所有內容（包括分支和標簽）。"
 	}, {
 		left: "local_repo",
 		right: "remote_repo",
 		direction: "up",
 		cmd: "push",
 		tags: 'Sharing and Updating',
-		docs: '將所有本地分支的修改推送到遠端倉庫上的相應分支，但不包括那些從未推送到遠端倉庫過的分支。'
+		docs: '將所有本地分支的修改推送到遠端檔案庫上的相應分支，但不包括那些從未推送到遠端檔案庫過的分支。'
 	}, {
 		left: "local_repo",
 		right: "remote_repo",
 		direction: "up",
 		cmd: "push <remote> <branch>",
 		tags: 'Sharing and Updating',
-		docs: "將一個新的（或現有）分支推送到遠端倉庫"
+		docs: "將一個新的（或現有）分支推送到遠端檔案庫"
 	}, {
 		left: "local_repo",
 		right: "remote_repo",
 		direction: "up",
 		cmd: "push <remote> <branch>:<branch>",
 		tags: 'Sharing and Updating',
-		docs: "將一個新的（或現有）分支推送到遠端倉庫的不同名分支上。"
+		docs: "將一個新的（或現有）分支推送到遠端檔案庫的不同名分支上。"
 	},
 
 	{
@@ -270,7 +270,7 @@ var commands = [
 		direction: "status",
 		cmd: "branch -r",
 		tags: 'Branching and Merging',
-		docs: "列出遠端倉庫的所有分支。"
+		docs: "列出遠端檔案庫的所有分支。"
 	},
 
 	{
@@ -279,7 +279,7 @@ var commands = [
 		direction: "status",
 		cmd: "push <remote> :<branch>",
 		tags: 'Sharing and Updating',
-		docs: "刪除遠端倉庫的指定分支。"
+		docs: "刪除遠端檔案庫的指定分支。"
 	},
 
 	{
@@ -298,21 +298,21 @@ var commands = [
 		cmd: "stash save [<msg>]",
 		tags: 'Branching and Merging',
 		docs: '將目前的修改內容保存到一個新的 stash 中。運行 "git reset --hard" 可以清除之。 ' +
-			'<message> 是可選的，事實上如果隻想立刻做個快照的話 "save" 也可以省略。'
+			'<message> 是可選的，事實上如果只想立刻做個快照的話 "save" 也可以省略。'
 	}, {
 		left: "stash",
 		right: "workspace",
 		direction: "up",
 		cmd: "stash apply [<name>]",
 		tags: 'Branching and Merging',
-		docs: "從指定的 stash 記錄中恢復修改到當前工作目錄。默認使用最后一次保存的 stash 記錄。"
+		docs: "從指定的 stash 記錄中恢復修改到當前工作目錄。預設使用最後一次保存的 stash 記錄。"
 	}, {
 		left: "stash",
 		right: "workspace",
 		direction: "up",
 		cmd: "stash pop",
 		tags: 'Branching and Merging',
-		docs: '應用最后一次保存的（或指定的） stash 記錄並刪除 stash 對它的記錄。'
+		docs: '套用最後一次保存的（或指定的） stash 記錄並刪除 stash 對它的記錄。'
 	}, {
 		left: "stash",
 		right: "stash",
@@ -326,7 +326,7 @@ var commands = [
 		direction: "status",
 		cmd: "stash show [<stash>]",
 		tags: 'Branching and Merging',
-		docs: "以 diff 顯示指定 stash 記錄中記錄的修改內容。未指定 <stash> 的話則採用最后一條 stash 記錄。"
+		docs: "以 diff 顯示指定 stash 記錄中記錄的修改內容。未指定 <stash> 的話則採用最後一條 stash 記錄。"
 	}, {
 		left: "stash",
 		right: "stash",
@@ -347,11 +347,11 @@ var commands = [
 		direction: "up",
 		cmd: "stash branch <branchname> [<stash>]",
 		tags: 'Branching and Merging',
-		docs: '根據指定的 stash 記錄創建一個新的分支，新的分支起點為創建該 stash 記錄時所在的提交，並將該 stash 記錄中的修改內容應用於' +
+		docs: '根據指定的 stash 記錄創建一個新的分支，新的分支起點為創建該 stash 記錄時所在的提交，並將該 stash 記錄中的修改內容套用於' +
 			'工作目錄和 index。如果操作成功並且 <stash> 的格式為 stash@{<revision>}，則一並刪除此 stash 記錄。' +
 			'未指定 <stash> 的話則採用最新一條記錄。\r' +
-			'當你在某個分之上執行了 stash save 之后此分支進行了太多修改提交導致嚴重沖突無法合並回去的時候，這條命令就非常有用了。' +
-			'因為新的恢復操作會應用在創建 stash 記錄時的提交基礎上，所以不會產生任何沖突。'
+			'當你在某個分支上執行了 stash save 之後此分支進行了太多修改提交導致嚴重衝突無法合併回去的時候，這條命令就非常有用了。' +
+			'因為新的恢復操作會套用在創建 stash 記錄時的提交基礎上，所以不會產生任何衝突。'
 	}
 
 ];
